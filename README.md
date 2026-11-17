@@ -4,6 +4,8 @@ TeamLoad is a web app for university project teams. Students describe their proj
 
 ## Run
 
+**Live demo:** https://teamload.denmarkeast.cloudapp.azure.com
+
 Requirements: Docker with Compose.
 
 ```sh
@@ -114,6 +116,16 @@ docker compose -f docker-compose.prod.yml up -d --build
 ```
 
 Put TLS in front (Caddy, a cloud load balancer or similar). Under `https://` the session cookie is `Secure`, `HttpOnly` and `SameSite=Lax`.
+
+The live demo runs this way on an Azure VM (Ubuntu 24.04, Standard B2ats v2) with Caddy in front for HTTPS. `WEB_PORT=127.0.0.1:8080` in `.env` keeps the web container local, and Caddy proxies to it:
+
+```
+teamload.denmarkeast.cloudapp.azure.com {
+    reverse_proxy 127.0.0.1:8080
+}
+```
+
+nginx takes the visitor's address from `X-Forwarded-For` when the request comes from a private network (the proxy), so the login rate limit still counts per visitor.
 
 ## Development without Docker for the app
 
