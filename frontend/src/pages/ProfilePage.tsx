@@ -8,7 +8,7 @@ import { useToast } from "../components/Toast";
 import { Notice, PageHead, PageSkeleton } from "../components/ui";
 import { AppShell } from "../layout/AppShell";
 import { forgetProject } from "../lib/currentProject";
-import { profileProblem } from "../lib/validate";
+import { MIN_STRENGTHS, MIN_WEAKNESSES, profileCharacterCount, profileProblem } from "../lib/validate";
 
 const SUGGESTED = ["Planning", "Communication", "Testing", "Go", "SQL", "React", "TypeScript", "Figma", "Python", "Docker"];
 
@@ -19,6 +19,9 @@ function ProfileForm({ data }: { data: ProfileBundle }) {
   const [err, setErr] = useState("");
   const save = useSaveProfile();
   const toast = useToast();
+
+  const strengthsCount = profileCharacterCount(strengths);
+  const weaknessesCount = profileCharacterCount(weaknesses);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -48,7 +51,7 @@ function ProfileForm({ data }: { data: ProfileBundle }) {
           <span className="hint" id="pStrHint">
             Skills, tools, languages, and what you enjoy doing in a team.
           </span>
-          <span className={`counter mono${strengths.length < 30 ? " bad" : ""}`}>{strengths.length} / 1000</span>
+          <span className={`counter mono${strengthsCount < MIN_STRENGTHS ? " bad" : ""}`}>{strengthsCount} / 1000 · min {MIN_STRENGTHS}</span>
         </div>
       </div>
       <div className="field">
@@ -66,7 +69,7 @@ function ProfileForm({ data }: { data: ProfileBundle }) {
           <span className="hint" id="pWeakHint">
             Be honest: the AI uses this to avoid a bad fit.
           </span>
-          <span className={`counter mono${weaknesses.length < 10 ? " bad" : ""}`}>{weaknesses.length} / 1000</span>
+          <span className={`counter mono${weaknessesCount < MIN_WEAKNESSES ? " bad" : ""}`}>{weaknessesCount} / 1000 · min {MIN_WEAKNESSES}</span>
         </div>
       </div>
       <div className="field">

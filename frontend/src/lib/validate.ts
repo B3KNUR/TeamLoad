@@ -10,7 +10,7 @@ export const MSG = {
   descShort: "The description needs at least 100 characters so the AI can understand the project.",
   deadlineMin: "Set a deadline at least 7 days from today.",
   deadlinePast: "The deadline cannot be in the past.",
-  profileShort: "Write at least 100 characters (about two sentences)",
+  profileShort: "Write at least 30 characters for strengths and 10 for weaknesses.",
   tooManyTags: "Use at most 10 tags.",
   tagLength: "Each tag must be 1–24 characters.",
   estimateRequired: "Enter an estimate greater than 0 hours",
@@ -43,10 +43,17 @@ export function validateNewProject(v: { title: string; description: string; dead
   return null;
 }
 
+export const MIN_STRENGTHS = 30;
+export const MIN_WEAKNESSES = 10;
+
+export function profileCharacterCount(value: string): number {
+  return Array.from(value.trim()).length;
+}
+
 export function profileProblem(strengths: string, weaknesses: string): string | null {
-  const s = strengths.trim().length;
-  const w = weaknesses.trim().length;
-  return s < 30 || w < 10 || s + w < 100 ? MSG.profileShort : null;
+  const s = profileCharacterCount(strengths);
+  const w = profileCharacterCount(weaknesses);
+  return s < MIN_STRENGTHS || w < MIN_WEAKNESSES ? MSG.profileShort : null;
 }
 
 /** Validates an estimate field; returns [hours rounded to 0.5, error]. */

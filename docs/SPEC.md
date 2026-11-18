@@ -127,7 +127,7 @@ Error messages in quotes are **exact strings** (QA tests them). Every rule is va
 
 ### 6.5 Skills profile
 - One profile per user, shared by all their projects (as the design says). Fields: strengths (max 1000), weaknesses (max 1000), **optional skill tags** (max 10 tags, each 1–24 chars, chip input — add it under Weaknesses in the design's style; see §12).
-- Saving requires strengths ≥ 30, weaknesses ≥ 10 **and** strengths + weaknesses ≥ 100 characters in total; otherwise **"Write at least 100 characters (about two sentences)"** and nothing is saved. A saved profile is **ready for AI matching**; tags are optional.
+- Saving a profile requires at least 30 characters in strengths and 10 in weaknesses (40 in total). A saved profile is **ready for AI matching**. Tags are optional.
 - Saving a changed profile marks this user's AI suggestions in all projects as **outdated** (chip on the roles page, and "Run again" is suggested); the new text is used on the next matching run.
 - **Delete my profile** (inline confirm as in the design): deletes the account and all personal data (profile, memberships, AI results); their tasks become unassigned; for every project they own, ownership passes to the earliest-joined remaining member (the confirm text names that person), or the project is deleted if nobody is left.
 
@@ -270,7 +270,6 @@ Work in phases. After each phase: run all tests and linters, commit with a clear
 | Design prototype | Build this instead | Why |
 |---|---|---|
 | Overloaded above 125% of average; band text "75–125%" | Overloaded strictly above **130%**; band and subtitle "75–130%" | Charter objective 4 and US-09 |
-| Profile: strengths ≥ 30, weaknesses ≥ 10 | Same, **plus** ≥ 100 characters in total | Backlog grooming decision |
 | Profile form has no tags input | Optional tag chips (max 10) under Weaknesses | Skills profile feature includes tags |
 | Prototype error texts (consent, estimate) | The exact strings in §6 | QA tests these strings |
 | Settings hint mentions changing team size | Team size fixed after creation; hint says only the description triggers the regenerate question | Simpler MVP |

@@ -29,11 +29,10 @@ describe("new project", () => {
 });
 
 describe("profile", () => {
-  it("needs 30 + 10 characters and 100 in total", () => {
+  it("needs 30 + 10 characters in the respective fields", () => {
     expect(profileProblem("x".repeat(29), "y".repeat(80))).toBe(MSG.profileShort);
     expect(profileProblem("x".repeat(90), "y".repeat(9))).toBe(MSG.profileShort);
-    expect(profileProblem("x".repeat(60), "y".repeat(39))).toBe(MSG.profileShort);
-    expect(profileProblem("x".repeat(90), "y".repeat(10))).toBeNull();
+    expect(profileProblem("x".repeat(30), "y".repeat(10))).toBeNull();
   });
 });
 
