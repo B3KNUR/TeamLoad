@@ -31,7 +31,7 @@ services:
       JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
       LLM_PROVIDER: ${LLM_PROVIDER:-mock}
       LLM_API_KEY: ${LLM_API_KEY:-}
-      LLM_MODEL: ${LLM_MODEL:-gemini-2.5-flash}
+      LLM_MODEL: ${LLM_MODEL:-gemini-3.8-flash-lite}
       LLM_MAX_CALLS_PER_PROJECT_PER_DAY: ${LLM_MAX_CALLS_PER_PROJECT_PER_DAY:-30}
     depends_on:
       db:
