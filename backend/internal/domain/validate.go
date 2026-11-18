@@ -18,7 +18,7 @@ const (
 	MsgTeamFullFmt       = "Team is full: maximum %d members"
 	MsgAIUnavailable     = "AI service temporarily unavailable. Please retry or assign roles manually"
 	MsgAILimit           = "Daily AI limit reached for this project. Try again tomorrow or edit manually."
-	MsgProfileTooShort   = "Write at least 100 characters (about two sentences)"
+	MsgProfileTooShort   = "Write at least 30 characters for strengths and 10 for weaknesses."
 	MsgEstimateRequired  = "Enter an estimate greater than 0 hours"
 	MsgEstimateRange     = "Estimate must be between 0.5 and 40 hours."
 	MsgTaskTitleRequired = "Give the task a title."
@@ -63,7 +63,6 @@ const (
 	MaxProfileField   = 1000
 	MinStrengths      = 30
 	MinWeaknesses     = 10
-	MinProfileTotal   = 100
 	MaxTags           = 10
 	MaxTagLength      = 24
 	MaxTaskTitle      = 120
@@ -211,7 +210,7 @@ func ValidateProfile(p Profile) FieldErrors {
 	if w > MaxProfileField {
 		e["weaknesses"] = MsgProfileTooLong
 	}
-	if e.OK() && (s < MinStrengths || w < MinWeaknesses || s+w < MinProfileTotal) {
+	if e.OK() && (s < MinStrengths || w < MinWeaknesses) {
 		e["strengths"] = MsgProfileTooShort
 	}
 	if len(p.Tags) > MaxTags {

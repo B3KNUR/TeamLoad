@@ -186,8 +186,7 @@ func TestValidateProfile(t *testing.T) {
 		{"ok", desc(70), desc(30), false},
 		{"strengths too short", desc(29), desc(80), true},
 		{"weaknesses too short", desc(95), desc(9), true},
-		{"total under 100", desc(60), desc(39), true},
-		{"exactly 100", desc(90), desc(10), false},
+		{"exactly 40", desc(30), desc(10), false},
 	}
 	for _, c := range cases {
 		e := ValidateProfile(Profile{Strengths: c.s, Weaknesses: c.w})
