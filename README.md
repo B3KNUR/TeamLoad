@@ -2,6 +2,8 @@
 
 TeamLoad is a web app for university project teams. Students describe their project, an AI designs one role per seat (responsibilities, skills, effort share), teammates join with an invite code and write a short skills profile, and the AI matches each person to a role, explaining why by quoting their profile. **The AI suggests, people decide:** every suggestion can be accepted or overridden. A RACI matrix is drafted by AI and edited by hand, and a task board with hour estimates feeds a workload dashboard that flags who is overloaded or underloaded.
 
+Проверка
+
 ## Run
 
 **Live demo:** https://teamload.denmarkeast.cloudapp.azure.com
