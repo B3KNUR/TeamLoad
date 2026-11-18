@@ -36,7 +36,7 @@ func Load() (Config, error) {
 		DevCORSOrigin: os.Getenv("DEV_CORS_ORIGIN"),
 		LLMProvider:   strings.ToLower(env("LLM_PROVIDER", "mock")),
 		LLMAPIKey:     os.Getenv("LLM_API_KEY"),
-		LLMModel:      env("LLM_MODEL", "gemini-2.5-flash"),
+		LLMModel:      env("LLM_MODEL", "gemini-3.8-flash-lite"),
 	}
 	c.SecureCookies = strings.HasPrefix(c.AppURL, "https://")
 
